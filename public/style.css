@@ -23,14 +23,14 @@
   }
 
   .background-banner {
-      background-image: url("img/cleveland-browns-banner-2.jpg");
+      background-image: url("img/nfl-banner-2.jpg");
+      box-shadow: 0px 10px 5px black;
       position: fixed;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      height: 125px;
+      height: 200px;
       width: 100%;
-      box-shadow: 0px 10px #331a00;
   }
 
   .background-image {
@@ -39,15 +39,25 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      margin-top: 135px;
+      margin-top: 200px;
       height: 100%;
       width: 100%;
       z-index: -50;
       opacity: .5;
   }
 
+  .background-color {
+      background-color: black;
+      height: 800px;
+      width: 100%;
+      position: fixed;
+      z-index: -100;
+  }
+
   .scraper {
-      margin-top: 145px;
+      color: white;
+      margin-top: 200px;
+      background-color: #cc0000;
   }
 
   #articles {
@@ -62,7 +72,9 @@
   #savenote {
       margin-top: 10px;
       margin-bottom: 20px;
-      width: 100%;
+      font-size: 15px;
+      color: white;
+      background-color: #009933;
   }
 
   #titleinput {
@@ -77,6 +89,23 @@
 
   #savednotetitle {
       text-align: center;
+  }
+
+  h4 {
+      margin-left: 5px;
+  }
+
+  .deleter {
+      margin-left: 20px;
+      color: #cc0000;
+      cursor: pointer;
+      text-align: right;
+  }
+
+  .btn-notes {
+      margin-top: 30px;
+      float: right;
+      background-color: #009933;
   }
 
   textarea,

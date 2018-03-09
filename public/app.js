@@ -1,15 +1,23 @@
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
+$.getJSON("/articles", function (data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+    let panel = $("<div class='panel panel-primary'>");
+    let header = $("<div class='panel-heading'>");
+    let body = $("<div class='panel-body'>");
+    
+    header.html(`<h3 data-id=${data[i]._id}><strong>${data[i].title}</strong><button class="btn btn-succes btn-notes"><strong>Article Notes</button></h3>`);
+
+    body.html(`<h4> ${data[i].link}</h4>`);
+    panel.append(header).append(body);
+
+    $("#articles").append(panel);
   }
 });
 
-
 // Whenever someone clicks a p tag
-$(document).on("click", "p", function() {
+$(document).on("click", "h3", function () {
   // Empty the notes from the note section
   $("#notes").empty();
   $("#saved_notes").empty();
@@ -22,8 +30,14 @@ $(document).on("click", "p", function() {
     url: "/articles/" + thisId
   })
     // With that done, add the note information to the page
-    .then(function(data) {
-      console.log(data);
+    .then(function (data) {
+      console.log(data.note);
+      console.log(data.note.length);
+
+
+      // data.note.forEach(data.note.title);
+
+
       // The title of the article
       $("#notes").append("<h3 id='articletitle'><strong>" + data.title + "</strong></h3>");
       // An input to enter a new title
@@ -31,27 +45,16 @@ $(document).on("click", "p", function() {
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body' placeholder=' note body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button> <br>");
+      $("#notes").append("<button class='btn btn-default' data-id='" + data._id + "' id='savenote'><strong>Save Note</strong></button> <br>");
 
-      $("#saved_notes").append("<h3 id='savednotetitle'><strong>Your Saved Notes</strong></h3>");
+      $("#saved_notes").append("<h3 id='savednotetitle'><strong>Your Saved Notes</strong></h3> <hr>");
 
-      $("#saved_notes").append("<textarea id='titleinput' name='title'>" + data.note.title);
-
-
-
-      // If there's a note in the article
-      // if (data.note) {
-        // // Place the title of the note in the title input
-        // $("#titleinput").val(data.note.title);
-        // // Place the body of the note in the body textarea
-        // $("#bodyinput").val(data.note.body);
-      // }
-      
+      $("#saved_notes").append("<label id='titleinput' name='title'>" + data.note.title);
     });
 });
 
 // When you click the savenote button
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#savenote", function () {
   // Grab the id associated with the article from the submit button
   var thisId = $(this).attr("data-id");
 
@@ -67,14 +70,41 @@ $(document).on("click", "#savenote", function() {
     }
   })
     // With that done
-    .then(function(data) {
+    .then(function (data) {
       // Log the response
       console.log(data);
       // Empty the notes section
       $("#notes").empty();
+      $("#titleinput").html(data.note.title);
     });
 
   // Also, remove the values entered in the input and textarea for note entry
   $("#titleinput").val("");
   $("#bodyinput").val("");
+});
+
+
+
+
+// When user clicks the deleter button for a note
+$(document).on("click", ".deleter", function () {
+  // Save the p tag that encloses the button
+  var selected = $(this).parent();
+  // Make an AJAX GET request to delete the specific note
+  // this uses the data-id of the p-tag, which is linked to the specific note
+  $.ajax({
+    type: "GET",
+    url: "/delete/" + selected.attr("data-id"),
+
+    // On successful call
+    success: function (response) {
+      // Remove the p-tag from the DOM
+      selected.remove();
+      // Clear the note and title inputs
+      $("#titleinput").val("");
+      $("#bodyinput").val("");
+      // Make sure the #actionbutton is submit (in case it's update)
+      $("#actionbutton").html("<button id='saved_notes'>Submit</button>");
+    }
+  });
 });

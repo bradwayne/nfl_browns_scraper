@@ -27,9 +27,11 @@
 
   <div class="background-image">
   </div>
+  <div class="background-color">
+  </div>
 
   <div class="container">
-    <button class="scraper btn btn-success">
+    <button class="scraper btn">
       <strong>SCRAPE ARTICLE</strong>
     </button>
   </div>
@@ -37,17 +39,16 @@
   <div class="container container-fluid article-container">
     <div class="row">
       <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <div class="article_scrape">
               <strong>Browns Scraped News Feed</strong>
             </div>
           </div>
         </div>
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div id="articles">
-            </div>
+        <div class="panel-heading">
+          <div id="articles">
+            <!-- <a class="btn btn-info notes">Article Notes</a> -->
           </div>
           <div class="panel-body">
             <div id="artical-link">
@@ -57,7 +58,7 @@
       </div>
 
       <div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
           <div class="panel-heading">
             <div class="article_note">
               <strong>Browns Notes</strong>
@@ -67,6 +68,8 @@
         <div class="panel panel-body">
           <div id="notes"></div>
           <div id="saved_notes"></div>
+          <div id="results">
+          </div>
         </div>
       </div>
     </div>
