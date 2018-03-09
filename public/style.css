@@ -1,0 +1,97 @@
+  body {
+      width: 100%;
+      height: 600px;
+  }
+
+  .container {
+      width: 960px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 25px;
+  }
+
+  .article_scrape {
+      font-size: 30px;
+  }
+
+  .article_note {
+      font-size: 30px;
+  }
+
+  #notes {
+      font-size: 20px;
+  }
+
+  .background-banner {
+      background-image: url("img/cleveland-browns-banner-2.jpg");
+      position: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 125px;
+      width: 100%;
+      box-shadow: 0px 10px #331a00;
+  }
+
+  .background-image {
+      background-image: url("img/b-ground.jpg");
+      position: fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 135px;
+      height: 100%;
+      width: 100%;
+      z-index: -50;
+      opacity: .5;
+  }
+
+  .scraper {
+      margin-top: 145px;
+  }
+
+  #articles {
+      display: inline-block;
+      overflow: auto;
+  }
+
+  #notes {
+      float: right;
+  }
+
+  #savenote {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      width: 100%;
+  }
+
+  #titleinput {
+      padding-left: 10px;
+      font-size: 20px;
+      margin-bottom: 10px;
+  }
+
+  #articletitle {
+      margin-top: 2px;
+  }
+
+  #savednotetitle {
+      text-align: center;
+  }
+
+  textarea,
+  input {
+      display: block;
+      width: 100%;
+      background-color: white;
+  }
+
+  input {
+      height: 36px;
+      font-size: 24px;
+  }
+
+  textarea {
+      height: 200px;
+      font-size: 18px;
+  }
