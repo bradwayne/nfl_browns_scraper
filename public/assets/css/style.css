@@ -11,11 +11,13 @@
   }
 
   .article_scrape {
-      font-size: 30px;
+      font-size: 40px;
+      font-family: 'Roboto Slab', serif;
   }
 
   .article_note {
-      font-size: 30px;
+      font-size: 40px;
+      font-family: 'Roboto Slab', serif;
   }
 
   #notes {
@@ -23,8 +25,8 @@
   }
 
   .background-banner {
-      background-image: url("img/nfl-banner-2.jpg");
-      box-shadow: 0px 10px 5px black;
+      background-image: url("/img/nfl-banner-2.jpg");
+      box-shadow: 0px 3px 5px lightblue;
       position: fixed;
       background-size: cover;
       background-repeat: no-repeat;
@@ -34,7 +36,7 @@
   }
 
   .background-image {
-      background-image: url("img/b-ground.jpg");
+      background-image: url("/img/b-ground.jpg");
       position: fixed;
       background-size: cover;
       background-repeat: no-repeat;
@@ -69,6 +71,14 @@
       float: right;
   }
 
+  #titleinput,
+  #bodyinput {
+      padding-left: 10px;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #337ab7;
+  }
+
   #savenote {
       margin-top: 10px;
       margin-bottom: 20px;
@@ -77,22 +87,23 @@
       background-color: #009933;
   }
 
-  #titleinput {
-      padding-left: 10px;
-      font-size: 20px;
-      margin-bottom: 10px;
-  }
-
-  #articletitle {
+  #notestitle {
       margin-top: 2px;
+      font-family: 'Roboto Slab', serif;
+      color: #337ab7;
   }
 
   #savednotetitle {
+      font-family: 'Roboto Slab', serif;
       text-align: center;
+      color: #337ab7;
+      font-size: 30px;
   }
 
-  h4 {
+  #articletitle {
+      font-size: 30px;
       margin-left: 5px;
+      font-family: 'Roboto Slab', serif;
   }
 
   .deleter {
@@ -103,7 +114,8 @@
   }
 
   .btn-notes {
-      margin-top: 30px;
+      margin-left: 10px;
+      margin-top: 35px;
       float: right;
       background-color: #009933;
   }
