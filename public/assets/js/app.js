@@ -105,6 +105,8 @@ $(document).on("click", "#savenote", function () {
   $("#bodyinput").val("");
 });
 
+// not coded to work yet //
+
 // When user clicks the deleter button for a note
 $(document).on("click", ".deleter", function () {
   // Save the p tag that encloses the button
