@@ -14,7 +14,7 @@ var db = require("./models");
 
 var PORT = process.env.PORT || 2000;
 
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 // Initialize Express
 var app = express();
@@ -33,15 +33,15 @@ app.use(express.static("public"));
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 
-// mongoose.Promise = Promise;
-// mongoose.connect(MONGODB_URI, {
-//   useMongoClient: true
-// });
-
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/nfl_browns_scraper", {
+mongoose.connect(MONGODB_URI, {
   useMongoClient: true
 });
+
+// mongoose.Promise = Promise;
+// mongoose.connect("mongodb://localhost/nfl_browns_scraper", {
+//   useMongoClient: true
+// });
 
 // Routes
 
