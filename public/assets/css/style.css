@@ -81,6 +81,10 @@
       color: #337ab7;
   }
 
+  #bodyinput {
+      height: 95px;
+  }
+
   #savenote {
       margin-top: 10px;
       margin-bottom: 20px;
