@@ -39,7 +39,7 @@ mongoose.connect(MONGODB_URI, {
 });
 
 // mongoose.Promise = Promise;
-// mongoose.connect("mongodb://localhost/nfl_browns_scraper", {
+// mongoose.connect("mongodb://localhost/clevelandBrownsDB", {
 //   useMongoClient: true
 // });
 
