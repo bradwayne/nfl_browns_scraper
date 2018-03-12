@@ -33,15 +33,15 @@ app.use(express.static("public"));
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-  useMongoClient: true
-});
-
 // mongoose.Promise = Promise;
-// mongoose.connect("mongodb://localhost/clevelandBrownsDB", {
+// mongoose.connect(MONGODB_URI, {
 //   useMongoClient: true
 // });
+
+mongoose.Promise = Promise;
+mongoose.connect("mongodb://localhost/clevelandBrownsDB", {
+  useMongoClient: true
+});
 
 // Routes
 
@@ -61,42 +61,37 @@ app.get("/scrape", function (req, res) {
       result.title = $(this).text();
       result.subtitle = $(this).parent().parent().find("p");
       result.link = $(this).attr("href");
+      result.createdAt = Date.now()
 
-
-      // Create a new Article using the `result` object built from scraping
-      db.Article.findOneAndUpdate({
-        title: result.title
-      }, 
-      {
-        title: result.title,
-        subtitle: result.subtitle,
-        link: result.link
-      }, 
-      {
-        upsert: true,
-        new: true,
-        setDefaultOnInsert: true
-      }, 
-      function (err, dbArticle) {
-        if (err) {
-          console.log(err);
-        } 
-        else {
-          console.log(dbArticle);
+      db.Article.find({
+        title : result.title
+      }).exec(function(err,docs) {
+        if(docs.length){
+          console.log("do nothing")
+        }else{
+          db.Article.create(result, function(err, data){
+            if(err){
+              console.log(err);
+            }else{
+              console.log("article inserted")
+              console.log(data);
+            }
+          })
         }
       })
+      
     });
 
-    // If we were able to successfully scrape and save an Article, send a message to the client
-    // not ggoing to send shit to /scrape page, but it will redirect to homepage. 
-    res.redirect("/");
+    setTimeout(() => {
+      res.redirect("/");
+    }, 1000);
   });
 });
 
 // Route for getting all Articles from the db
 app.get("/articles", function (req, res) {
   // Grab every document in the Articles collection
-  db.Article.find({})
+  db.Article.find({}).sort({createdAt : -1})
     .then(function (dbArticle) {
       // If we were able to successfully find Articles, send them back to the client
       res.json(dbArticle);
